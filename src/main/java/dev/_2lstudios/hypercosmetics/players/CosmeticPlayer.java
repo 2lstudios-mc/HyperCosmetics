@@ -12,12 +12,12 @@ public class CosmeticPlayer {
 		this.bukkitPlayer = player;
 	}
 
-	public Particle getArrowTrail() {
-		return this.arrowTrail;
-	}
-
 	public Player getBukkitPlayer() {
 		return this.bukkitPlayer;
+	}
+
+	public Particle getArrowTrail() {
+		return this.arrowTrail;
 	}
 
 	public void setArrowTrail(Particle arrowTrail) {
