@@ -7,7 +7,6 @@ import org.bukkit.event.player.PlayerJoinEvent;
 import dev._2lstudios.hypercosmetics.HyperCosmetics;
 
 public class PlayerJoinListener implements Listener {
-
 	private final HyperCosmetics plugin;
 
 	public PlayerJoinListener(final HyperCosmetics plugin) {
@@ -16,6 +15,6 @@ public class PlayerJoinListener implements Listener {
 
 	@EventHandler
 	public void onPlayerJoin(final PlayerJoinEvent event) {
-		this.plugin.getPlayerManager().addPlayer(event.getPlayer());
+
 	}
 }

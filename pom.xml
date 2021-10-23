@@ -1,12 +1,21 @@
-<project>
-    <!-- Project -->
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
+    
     <groupId>dev._2lstudios</groupId>
-    <artifactId>HyperCosmetics</artifactId>
-    <version>SNAPSHOT</version>
+    <artifactId>ExamplePlugin</artifactId>
     <packaging>jar</packaging>
 
-	<!-- Repositories -->
+    <name>HyperCosmetics</name>
+    <description>Cosmetics plugin for Bukkit.</description>
+    <version>0.0.1</version>
+    <url>https://github.com/2lstudios-mc/hypercosmetics</url>
+
+    <properties>
+        <author>2LStudios</author>
+        <mainClass>dev._2lstudios.hypercosmetics.HyperCosmetics</mainClass>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    </properties>
+
     <repositories>
         <repository>
             <id>spigot-repo</id>
@@ -14,51 +23,33 @@
         </repository>
     </repositories>
 
-    <!-- Dependencies -->
     <dependencies>
         <dependency>
             <groupId>org.spigotmc</groupId>
             <artifactId>spigot-api</artifactId>
-            <version>1.8.8-R0.1-SNAPSHOT</version>
+            <version>1.17.1-R0.1-SNAPSHOT</version>
             <scope>provided</scope>
         </dependency>
     </dependencies>
 
-    <!-- Properties -->
-    <properties>
-        <maven.compiler.source>1.8</maven.compiler.source>
-        <maven.compiler.target>1.8</maven.compiler.target>
-    </properties>
-
-    <!-- Build / Compilation -->
     <build>
+        <finalName>${artifactId}</finalName>
         <sourceDirectory>src/main/java</sourceDirectory>
         <defaultGoal>clean install</defaultGoal>
         <resources>
             <resource>
                 <directory>src/main/resources</directory>
-                <!-- Keeping filtering at true here reduces plugin.yml redundancy! -->
                 <filtering>true</filtering>
-                <includes>
-                    <include>plugin.yml</include>
-                </includes>
-            </resource>
-            <resource>
-                <directory>src/main/resources</directory>
-                <!-- Keep filtering at false for other resources to prevent bad magic -->
-                <filtering>false</filtering>
                 <excludes>
                     <exclude>**/*.java</exclude>
-                    <exclude>plugin.yml</exclude>
                 </excludes>
             </resource>
         </resources>
 
-        <finalName>${project.artifactId}</finalName>
         <plugins>
             <plugin>
                 <artifactId>maven-compiler-plugin</artifactId>
-                <version>3.1</version>
+                <version>3.8.1</version>
                 <configuration>
                     <source>1.8</source>
                     <target>1.8</target>
