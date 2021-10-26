@@ -1,9 +1,9 @@
-package dev._2lstudios.hypercosmetics.cosmetics;
+package dev._2lstudios.hypercosmetics.cosmetics.trails;
 
 import java.util.HashMap;
 import java.util.Map;
 
-public class TrailService {
+public class TrailsService {
     private Map<String, Trail> trails = new HashMap<>();
 
     public Trail getTrail(final String trailName) {

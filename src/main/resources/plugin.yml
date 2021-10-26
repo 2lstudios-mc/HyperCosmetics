@@ -1,12 +1,10 @@
-name: HyperCosmetics
-authors: ["Sammwy", "LinsaFTW"]
-main: "dev._2lstudios.hypercosmetics.HyperCosmetics"
-version: 0.0.1
-api: "legacy"
+name: ${name}
+description: ${description}
+author: ${author}
+main: ${mainClass}
+version: ${version}
+url: ${url}
 commands:
     hypercosmetics:
         description: "Main command for cosmetics"
-        aliases: ["hc", "hyperc"]
-    cosmetics:
-        description: "Open cosmetics GUI"
-        aliases: ["cgui", "cg"]
+        aliases: [ "cosmetics" ]

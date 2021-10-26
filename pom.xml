@@ -2,7 +2,7 @@
     <modelVersion>4.0.0</modelVersion>
     
     <groupId>dev._2lstudios</groupId>
-    <artifactId>ExamplePlugin</artifactId>
+    <artifactId>HyperCosmetics</artifactId>
     <packaging>jar</packaging>
 
     <name>HyperCosmetics</name>

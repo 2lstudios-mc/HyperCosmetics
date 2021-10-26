@@ -1,8 +1,7 @@
-package dev._2lstudios.hypercosmetics.cosmetics;
+package dev._2lstudios.hypercosmetics.cosmetics.trails;
 
 import org.bukkit.Location;
 import org.bukkit.Particle;
-import org.bukkit.entity.LivingEntity;
 
 public class Trail {
     private final Particle particle;
@@ -15,9 +14,7 @@ public class Trail {
         return particle;
     }
 
-    public void update(final LivingEntity livingEntity) {
-        final Location location = livingEntity.getLocation();
-
-        location.getWorld().spawnParticle(particle, location, 3);
+    public void spawnParticles(final Location location) {
+        location.getWorld().spawnParticle(particle, location, 1);
     }
 }
