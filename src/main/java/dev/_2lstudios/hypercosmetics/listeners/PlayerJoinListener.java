@@ -1,11 +1,11 @@
 package dev._2lstudios.hypercosmetics.listeners;
 
-import org.bukkit.Particle;
+import com.comphenix.protocol.wrappers.EnumWrappers;
+
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerJoinEvent;
 
-import dev._2lstudios.hypercosmetics.HyperCosmetics;
 import dev._2lstudios.hypercosmetics.cosmetics.trails.TrailsController;
 
 public class PlayerJoinListener implements Listener {
@@ -17,6 +17,6 @@ public class PlayerJoinListener implements Listener {
 
 	@EventHandler
 	public void onPlayerJoin(final PlayerJoinEvent event) {
-		trailsController.applyTrail(event.getPlayer(), Particle.CRIT_MAGIC);
+		trailsController.applyTrail(event.getPlayer(), EnumWrappers.Particle.CRIT_MAGIC);
 	}
 }

@@ -1,11 +1,13 @@
 package dev._2lstudios.hypercosmetics.cosmetics.trails;
 
+import java.lang.reflect.InvocationTargetException;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
 import java.util.Map.Entry;
 
-import org.bukkit.Particle;
+import com.comphenix.protocol.wrappers.EnumWrappers;
+
 import org.bukkit.entity.LivingEntity;
 
 public class TrailsController implements Runnable {
@@ -19,15 +21,15 @@ public class TrailsController implements Runnable {
         }
     }
 
-    public void applyTrail(final LivingEntity livingEntity, final Particle particle) {
-        applyTrail(livingEntity, new Trail(particle));
+    public void applyTrail(final LivingEntity livingEntity, final EnumWrappers.Particle effect) {
+        applyTrail(livingEntity, new Trail(effect));
     }
 
-    public void spawnTrails(final LivingEntity livingEntity, final Trail trail) {
+    public void spawnTrails(final LivingEntity livingEntity, final Trail trail) throws InvocationTargetException {
         trail.spawnParticles(livingEntity.getLocation());
     }
 
-    public void spawnTrails(final LivingEntity livingEntity) {
+    public void spawnTrails(final LivingEntity livingEntity) throws InvocationTargetException {
         if (trailEntities.containsKey(livingEntity)) {
             final Trail trail = trailEntities.get(livingEntity);
 
@@ -35,7 +37,7 @@ public class TrailsController implements Runnable {
         }
     }
 
-    public void spawnTrails() {
+    public void spawnTrails() throws InvocationTargetException {
         final Iterator<Entry<LivingEntity, Trail>> iterator = trailEntities.entrySet().iterator();
 
         while (iterator.hasNext()) {
@@ -49,14 +51,14 @@ public class TrailsController implements Runnable {
                 spawnTrails(key, value);
             }
         }
-
-        for (final Entry<LivingEntity, Trail> entry : trailEntities.entrySet()) {
-            spawnTrails(entry.getKey(), entry.getValue());
-        }
     }
 
     @Override
     public void run() {
-        spawnTrails();
+        try {
+            spawnTrails();
+        } catch (final InvocationTargetException e) {
+            e.printStackTrace();
+        }
     }
 }
