@@ -16,24 +16,24 @@ import org.bukkit.util.Vector;
 public class ProtocolUtils {
     public static void spawnParticle(final Vector location, final double radius) throws InvocationTargetException {
         final ProtocolManager protocolManager = ProtocolLibrary.getProtocolManager();
-        final double x;
-        final double y;
-        final double z;
+        final float x;
+        final float y;
+        final float z;
 
         if (radius > 0) {
-            x = location.getX() + (Math.random() - 0.5) * (radius * 2);
-            y = location.getY() + (Math.random() - 0.5) * (radius * 2);
-            z = location.getZ() + (Math.random() - 0.5) * (radius * 2);
+            x = (float) (location.getX() + (Math.random() - 0.5) * (radius * 2));
+            y = (float) (location.getY() + (Math.random() - 0.5) * (radius * 2));
+            z = (float) (location.getZ() + (Math.random() - 0.5) * (radius * 2));
         } else {
-            x = location.getX();
-            y = location.getY();
-            z = location.getZ();
+            x = (float) location.getX();
+            y = (float) location.getY();
+            z = (float) location.getZ();
         }
 
         final PacketContainer packet = protocolManager.createPacket(PacketType.Play.Server.WORLD_PARTICLES);
 
         packet.getParticles().write(0, EnumWrappers.Particle.CRIT_MAGIC);
-        packet.getDoubles().write(0, x).write(1, y).write(2, z);
+        packet.getFloat().write(0, x).write(1, y).write(2, z);
 
         for (final Player player : Bukkit.getOnlinePlayers()) {
             protocolManager.sendServerPacket(player, packet);

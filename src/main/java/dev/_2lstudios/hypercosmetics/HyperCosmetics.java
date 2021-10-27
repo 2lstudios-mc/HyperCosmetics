@@ -20,7 +20,7 @@ public class HyperCosmetics extends JavaPlugin {
 		pluginManager.registerEvents(new PlayerJoinListener(trailsController), this);
 		pluginManager.registerEvents(new PlayerQuitListener(this), this);
 		
-		server.getScheduler().runTaskTimer(this, trailsController, 1L, 1L);
+		server.getScheduler().runTaskTimerAsynchronously(this, trailsController, 1L, 1L);
 	}
 	
 	private static HyperCosmetics Instance;
