@@ -6,7 +6,7 @@ import com.comphenix.protocol.PacketType;
 import com.comphenix.protocol.ProtocolLibrary;
 import com.comphenix.protocol.ProtocolManager;
 import com.comphenix.protocol.events.PacketContainer;
-import com.comphenix.protocol.wrappers.EnumWrappers;
+import com.comphenix.protocol.wrappers.EnumWrappers.Particle;
 
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
@@ -14,7 +14,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.util.Vector;
 
 public class ProtocolUtils {
-    public static void spawnParticle(final Vector location, final double radius) throws InvocationTargetException {
+    public static void spawnParticle(final Vector location, final Particle particle, final double radius) throws InvocationTargetException {
         final ProtocolManager protocolManager = ProtocolLibrary.getProtocolManager();
         final float x;
         final float y;
@@ -32,7 +32,7 @@ public class ProtocolUtils {
 
         final PacketContainer packet = protocolManager.createPacket(PacketType.Play.Server.WORLD_PARTICLES);
 
-        packet.getParticles().write(0, EnumWrappers.Particle.CRIT_MAGIC);
+        packet.getParticles().write(0, particle);
         packet.getFloat().write(0, x).write(1, y).write(2, z);
 
         for (final Player player : Bukkit.getOnlinePlayers()) {
@@ -40,11 +40,11 @@ public class ProtocolUtils {
         }
     }
 
-    public static void spawnParticle(final Location location, final double radius) throws InvocationTargetException {
-        spawnParticle(location.toVector(), radius);
+    public static void spawnParticle(final Location location, final Particle particle, final double radius) throws InvocationTargetException {
+        spawnParticle(location.toVector(), particle, radius);
     }
 
-    public static void spawnParticle(final Location location) throws InvocationTargetException {
-        spawnParticle(location, 0);
+    public static void spawnParticle(final Location location, final Particle particle) throws InvocationTargetException {
+        spawnParticle(location, particle, 0);
     }
 }

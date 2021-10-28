@@ -6,14 +6,14 @@ import java.util.Iterator;
 import java.util.Map;
 import java.util.Map.Entry;
 
-import com.comphenix.protocol.wrappers.EnumWrappers;
+import com.comphenix.protocol.wrappers.EnumWrappers.Particle;
 
-import org.bukkit.entity.LivingEntity;
+import org.bukkit.entity.Entity;
 
 public class TrailsController implements Runnable {
-    private Map<LivingEntity, Trail> trailEntities = new HashMap<>();
+    private Map<Entity, Trail> trailEntities = new HashMap<>();
 
-    public void applyTrail(final LivingEntity livingEntity, final Trail trail) {
+    public void applyTrail(final Entity livingEntity, final Trail trail) {
         if (trail == null) {
             trailEntities.remove(livingEntity);
         } else {
@@ -21,15 +21,15 @@ public class TrailsController implements Runnable {
         }
     }
 
-    public void applyTrail(final LivingEntity livingEntity, final EnumWrappers.Particle effect) {
+    public void applyTrail(final Entity livingEntity, final Particle effect) {
         applyTrail(livingEntity, new Trail(effect));
     }
 
-    public void spawnTrails(final LivingEntity livingEntity, final Trail trail) throws InvocationTargetException {
+    public void spawnTrails(final Entity livingEntity, final Trail trail) throws InvocationTargetException {
         trail.spawnParticles(livingEntity.getLocation());
     }
 
-    public void spawnTrails(final LivingEntity livingEntity) throws InvocationTargetException {
+    public void spawnTrails(final Entity livingEntity) throws InvocationTargetException {
         if (trailEntities.containsKey(livingEntity)) {
             final Trail trail = trailEntities.get(livingEntity);
 
@@ -38,11 +38,11 @@ public class TrailsController implements Runnable {
     }
 
     public void spawnTrails() throws InvocationTargetException {
-        final Iterator<Entry<LivingEntity, Trail>> iterator = trailEntities.entrySet().iterator();
+        final Iterator<Entry<Entity, Trail>> iterator = trailEntities.entrySet().iterator();
 
         while (iterator.hasNext()) {
-            final Entry<LivingEntity, Trail> entry = iterator.next();
-            final LivingEntity key = entry.getKey();
+            final Entry<Entity, Trail> entry = iterator.next();
+            final Entity key = entry.getKey();
             final Trail value = entry.getValue();
 
             if (!key.isValid()) {
@@ -60,5 +60,9 @@ public class TrailsController implements Runnable {
         } catch (final InvocationTargetException e) {
             e.printStackTrace();
         }
+    }
+
+    public Trail getTrail(final Entity livingEntity) {
+        return trailEntities.getOrDefault(livingEntity, null);
     }
 }

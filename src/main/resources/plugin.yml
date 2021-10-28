@@ -5,6 +5,6 @@ main: ${mainClass}
 version: ${version}
 url: ${url}
 commands:
-    hypercosmetics:
+    cosmetics:
         description: "Main command for cosmetics"
-        aliases: [ "cosmetics" ]
+        aliases: [ "hypercosmetics" ]

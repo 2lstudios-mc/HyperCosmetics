@@ -4,8 +4,10 @@ import org.bukkit.Server;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
 
+import dev._2lstudios.hypercosmetics.commands.CosmeticsCommandExecutor;
 import dev._2lstudios.hypercosmetics.cosmetics.trails.TrailsController;
 import dev._2lstudios.hypercosmetics.cosmetics.trails.TrailsService;
+import dev._2lstudios.hypercosmetics.listeners.EntityShootBowListener;
 import dev._2lstudios.hypercosmetics.listeners.PlayerJoinListener;
 import dev._2lstudios.hypercosmetics.listeners.PlayerQuitListener;
 
@@ -17,12 +19,15 @@ public class HyperCosmetics extends JavaPlugin {
 		final TrailsService trailsService = new TrailsService();
 		final TrailsController trailsController = new TrailsController();
 
+		pluginManager.registerEvents(new EntityShootBowListener(trailsController), this);
 		pluginManager.registerEvents(new PlayerJoinListener(trailsController), this);
 		pluginManager.registerEvents(new PlayerQuitListener(this), this);
-		
+
+		getCommand("cosmetics").setExecutor(new CosmeticsCommandExecutor(trailsController));
+
 		server.getScheduler().runTaskTimerAsynchronously(this, trailsController, 1L, 1L);
 	}
-	
+
 	private static HyperCosmetics Instance;
 
 	public static HyperCosmetics getInstance() {
